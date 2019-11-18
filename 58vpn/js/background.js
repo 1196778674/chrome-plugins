@@ -3,15 +3,15 @@ const config = {
     rules: {
         proxyForHttp: {
             scheme: "socks5",
-            host: "161.129.43.205",
-            port: 16899
+            host: "192.168.4.1",
+            port: 1080
         },
         proxyForHttps: {
             scheme: "socks5",
-            host: "161.129.43.205",
-            port: 16899
-        },
-        bypassList: ["baidu.com"]
+            host: "192.168.4.1",
+            port: 1080
+		},
+        bypassList: ["https://www.baidu.com"]
     }
 };
 // $.ajax({
@@ -38,17 +38,12 @@ function PROXY_IP() {
 	chrome.proxy.settings.set(
 		{value: config},
 		function() {
-			chrome.proxy.settings.get(
-				{},
-				function(config) {
-					chrome.notifications.create(null, {
-						type: 'basic',
-						iconUrl: 'icon.png',
-						title: '切换线路成功',
-						message: '切换线路成功'
-					});
-				}
-			);
+			chrome.notifications.create(null, {
+				type: 'basic',
+				iconUrl: 'icon.png',
+				title: '58COIN加速器',
+				message: '切换线路成功'
+			});
 		}
 	);
 }
