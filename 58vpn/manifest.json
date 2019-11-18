@@ -1,0 +1,36 @@
+{
+	"manifest_version": 2,
+	"name": "58COIN官网",
+	"version": "1.0.0",
+	"description": "58COIN加速器",
+	"author": "<liufei@58btc.com>",
+	"icons":
+	{
+		"48": "icon.png",
+		"128": "icon.png"
+	},
+	"browser_action": 
+	{
+		"default_icon": "icon.png",
+		"default_popup": "popup.html"
+	},
+	"content_scripts": 
+	[
+		{
+			"matches": ["<all_urls>"],
+			"js": ["js/jquery.js", "js/content-script.js"],
+			"run_at": "document_start"
+		}
+	],
+	"homepage_url": "https://www.58ex.com",
+	"permissions":
+	[
+		"contextMenus",
+		"notifications",
+		"proxy"
+	],
+	"background":
+	{
+		"page": "background.html"
+	}
+}
