@@ -5,9 +5,11 @@
 	<title>58COIN加速器</title>
 	<style>
 		html,body{
-			max-width: 200px;
+			max-width: 230px;
 			height: auto;
 			text-align: center;
+			text-decoration: none;
+			color: #888;
 		}
 		button{
 			padding: 10px;
@@ -23,12 +25,36 @@
 			font-size: 12px;
 			color: #999;
 		}
+		.container{
+			overflow: hidden;
+			padding: 0px 20px;
+			padding-left: 40px;
+		}
+		.container a {
+			text-decoration: none;
+			font-size: 12px;
+			color: #6c89ff;
+			text-align: left;
+			display: block;
+			width: 50%;
+			float: left;
+			padding-bottom: 2px;
+			cursor: pointer;
+		}
 	</style>
 </head>
 <body style="width:500px;min-height:100px;">
 	<h2>58COIN加速器</h2>
 	<button id="invoke_background_js">58COIN加速</button>
 	<p>点击加速或右键加速</p>
+	<div class="container">
+		<a data-type="www">58COIN官网</a>
+		<a data-type="usdt">USDT合约</a>
+		<a data-type="swap">币本位合约</a>
+		<a data-type="spot">币币交易</a>
+		<a data-type="regular">季度合约</a>
+		<a data-type="c2c">法币交易</a>
+	</div>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/popup.js"></script>
 </body>
