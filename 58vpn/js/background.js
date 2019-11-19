@@ -3,7 +3,6 @@ const config = {
 	pacScript: {
 		data: "function FindProxyForURL(url, host) {\n" +
 					"if (url.indexOf('58ex.com') > -1) {\n" + 
-						"console.log(url) \n" +
 						"return 'PROXY 222.20.74.89:8800; SOCKS 222.20.74.89:8899; https 222.20.74.89:8800; DIRECT;'; \n" +
 					"}" + 	
 					"return 'DIRECT'; \n" +
@@ -12,7 +11,7 @@ const config = {
 };
 
 chrome.contextMenus.create({
-	title: "切换线路",
+	title: "58COIN加速",
 	onclick: function(){
 		PROXY_IP()
 	}
@@ -30,7 +29,7 @@ function PROXY_IP() {
 				type: 'basic',
 				iconUrl: 'icon.png',
 				title: '58COIN加速器',
-				message: '切换线路成功'
+				message: '加速成功啦~~'
 			});
 		}
 	);
@@ -52,7 +51,7 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 			href = 'https://c2c.58ex.com/'
 			break;
 		case 'usdt':
-			href = 'https://usdt.58ex.com'
+			href = 'https://usdt.58ex.com/'
 			break;
 		case 'swap':
 			href = 'https://swap.58ex.com/'
@@ -64,7 +63,7 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 			href = 'https://regularfuture.58ex.com/'
 			break;
 		default:
-			href = 'https://www.58ex.com'
+			href = 'https://www.58ex.com/'
 			break;
 	};
 	openUrlCurrentTab(href);
