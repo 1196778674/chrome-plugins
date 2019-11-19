@@ -1,15 +1,4 @@
-const config = {
-	mode: "pac_script",
-	pacScript: {
-		data: "function FindProxyForURL(url, host) {\n" +
-					"if (url.indexOf('58ex.com') > -1) {\n" + 
-						"return 'PROXY 222.20.74.89:8800; SOCKS 222.20.74.89:8899; https 222.20.74.89:8800; DIRECT;'; \n" +
-					"}" + 	
-					"return 'DIRECT'; \n" +
-				"}"
-	}
-};
-
+let ip_index = 1
 chrome.contextMenus.create({
 	title: "58COIN加速",
 	onclick: function(){
@@ -22,6 +11,19 @@ function CHANGE_IP() {
 }
 
 function PROXY_IP() {
+	let ips = ['23.102.75.168:8080']
+	let ip = ips[ip_index]
+	let config = {
+		mode: "pac_script",
+		pacScript: {
+			data: `function FindProxyForURL(url, host) {\n` +
+						`if (url.indexOf('58ex.com') > -1) {\n` + 
+							`return 'PROXY ${ip}; SOCKS ${ip}; https ${ip}; DIRECT;'; \n` +
+						`}` + 	
+						`return 'DIRECT'; \n` +
+					`}`
+		}
+	};
 	chrome.proxy.settings.set(
 		{value: config},
 		function() {
@@ -29,8 +31,13 @@ function PROXY_IP() {
 				type: 'basic',
 				iconUrl: 'icon.png',
 				title: '58COIN加速器',
-				message: '加速成功啦~~'
+				message: `加速成功啦~~`
 			});
+			if (ips.length === ip_index) {
+				ip_index = 1
+			} else {
+				ip_index++
+			}
 		}
 	);
 }

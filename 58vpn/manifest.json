@@ -29,7 +29,9 @@
 	[
 		"contextMenus",
 		"notifications",
-		"proxy"
+		"proxy",
+		"webRequest",
+		"webRequestBlocking"
 	],
 	"background":
 	{
