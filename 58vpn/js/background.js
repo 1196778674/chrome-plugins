@@ -140,7 +140,7 @@ function measureBW(fn,time) {
                 count --;
                 if(count<=0){
                     endTime = Date.now();
-                    var speed = fileSize * time  / ((endTime - startTime)/1000) / 1024;
+                    var speed = fileSize * time  / ((endTime - startTime)/1000) / 1024 / 1024;
                     fn && fn(Math.floor(speed));
                 }
             }
