@@ -9,7 +9,18 @@ chrome.contextMenus.create({
 chrome.contextMenus.create({
 	title: "58COIN加速",
 	onclick: function(){
-		PROXY_IP()
+		chrome.proxy.settings.get({}, function (e) {
+			if(!!e.value.pacScript){
+				PROXY_IP()
+			} else {
+				chrome.notifications.create(null, {
+					type: 'basic',
+					iconUrl: 'icon.png',
+					title: '58COIN加速器',
+					message: `请先打开58COIN加速~~`
+				});
+			}
+		})
 	}
 });
 
