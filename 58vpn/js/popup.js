@@ -32,6 +32,7 @@ $('.container a').on('click', (e) => {
 })
 setInterval(() => {
 	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
-		$('#fbs').text(request)
+		let color = Number(request) > 100 ? '#0ab480' : '#f14b4f'
+		$('#fbs').css({'color': color}).text(request + 'KB/s')
 	});
 }, 2000);

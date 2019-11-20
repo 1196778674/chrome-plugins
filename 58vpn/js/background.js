@@ -130,7 +130,6 @@ function measureBW(fn,time) {
 
 setInterval(() => {
 	measureBW((speed)=>{
-		let val = speed + " KB/s"
-		chrome.runtime.sendMessage(val)
+		chrome.runtime.sendMessage(speed)
 	},10)
 }, 2000);
