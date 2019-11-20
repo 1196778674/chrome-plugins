@@ -20,10 +20,13 @@
 			border: 1px dashed #697fd5;
 			cursor: pointer;
 			outline: none;
+			margin: 10px;
+			margin-bottom: 0px;;
 		}
 		p{
 			font-size: 12px;
 			color: #999;
+			margin: 10px;
 		}
 		.container{
 			overflow: hidden;
@@ -41,12 +44,16 @@
 			padding-bottom: 2px;
 			cursor: pointer;
 		}
+		p.fbs{
+			margin: 0;
+		}
 	</style>
 </head>
 <body style="width:500px;min-height:100px;">
 	<h2>58COIN加速器</h2>
+	<p class="fbs">当前网速：<span id="fbs">检测中...</span></p>
 	<button id="invoke_background_js">58COIN加速</button>
-	<p>点击加速或右键加速</p>
+	<p>点击加速站点或右键加速站点</p>
 	<div class="container">
 		<a data-type="www">58COIN官网</a>
 		<a data-type="usdt">USDT合约</a>

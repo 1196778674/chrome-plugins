@@ -30,3 +30,8 @@ $('.container a').on('click', (e) => {
 			break;
 	}
 })
+setInterval(() => {
+	chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+		$('#fbs').text(request)
+	});
+}, 2000);
