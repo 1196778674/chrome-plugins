@@ -1,8 +1,32 @@
-﻿
-$('#invoke_background_js').click(e => {
-	let bg = chrome.extension.getBackgroundPage()
-	bg.CHANGE_IP()
-});
+﻿const bg = chrome.extension.getBackgroundPage()
+
+function LOADING () {
+	return new Promise((resolve, reject) => {
+		chrome.proxy.settings.get({}, function (e) {
+			if (!!e.value.pacScript) {
+				$('#checkbox').prop('checked', true)
+			} else {
+				$('#checkbox').prop('checked', false)
+			}
+			setTimeout(() => {
+				resolve()
+			}, 1000);
+		})
+	})
+}
+
+LOADING().then(res => {
+	$('#loading').hide()
+	$('.bodys').show()
+})
+
+$('#switch').on('click', (e) => {
+	if (!$('#checkbox').prop('checked')) {
+		bg.CHANGE_IP()
+	} else {
+		bg.CLEAR_PROXY()
+	}
+})
 
 $('.container a').on('click', (e) => {
 	let type = $(e.target).data('type')

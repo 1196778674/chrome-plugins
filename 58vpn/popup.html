@@ -11,6 +11,9 @@
 			text-decoration: none;
 			color: #888;
 		}
+		.bodys{
+			display: none;
+		}
 		button{
 			padding: 10px;
 			background: #697fd5;
@@ -47,20 +50,181 @@
 		p.fbs{
 			margin: 0;
 		}
+		.switch-body{
+			overflow: hidden;
+			margin-top: 10px;
+		}
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 34px;
+			float: left;
+		}
+
+		.switch input {display:none;}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
+
+		input:checked + .slider {
+			background-color: #2196F3;
+		}
+
+		input:focus + .slider {
+			box-shadow: 0 0 1px #2196F3;
+		}
+
+		input:checked + .slider:before {
+			-webkit-transform: translateX(26px);
+			-ms-transform: translateX(26px);
+			transform: translateX(26px);
+		}
+
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+		.switch-title{
+			display: block;
+			float: left;
+			text-align: right;
+			width: 50%;
+			line-height: 34px;
+		}
+		/* loading */
+		.g-page-loading {
+			position: fixed;
+			z-index: 1000;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-color: #fff;
+			display: flex;
+			flex-direction: column;
+			padding-top: 50px;
+			align-items: center;
+			}
+			@keyframes animateSpan {
+			to {
+				transform: rotateY(360deg) translateY(-5px);
+				filter: blur(0.6px);
+			}
+			}
+			@keyframes animateLine {
+			50% {
+				width: 10px;
+			}
+			to {
+				transform: translateX(65px);
+				width: 0px;
+				filter: blur(0.6px);
+			}
+		}
+		.g-page-loading .loading-line {
+			width: 65px;
+			height: 2px;
+			line-height: 0px;
+		}
+		.g-page-loading .loading-line:before {
+			position: relative;
+			top: -2px;
+			content: '';
+			display: inline-block;
+			height: 2px;
+			width: 0px;
+			background-color: #3750b3;
+			animation: animateLine 0.5s ease 0s infinite alternate;
+		}
+		.g-page-loading .loading-txt {
+			font-size: 18px;
+			font-weight: 900;
+			perspective: 300px;
+			color: #3750b3;
+		}
+		.g-page-loading .loading-txt span:nth-child(1) {
+			display: inline-block;
+			animation: animateSpan 0.5s ease 0s infinite alternate;
+		}
+		.g-page-loading .loading-txt span:nth-child(2) {
+			display: inline-block;
+			animation: animateSpan 0.5s ease 0.1s infinite alternate;
+		}
+		.g-page-loading .loading-txt span:nth-child(3) {
+			display: inline-block;
+			animation: animateSpan 0.5s ease 0.2s infinite alternate;
+		}
+		.g-page-loading .loading-txt span:nth-child(4) {
+			display: inline-block;
+			animation: animateSpan 0.5s ease 0.3s infinite alternate;
+		}
+		.g-page-loading .loading-txt span:nth-child(5) {
+			display: inline-block;
+			animation: animateSpan 0.5s ease 0.4s infinite alternate;
+		}
+		.g-page-loading .loading-txt span:nth-child(6) {
+			display: inline-block;
+			animation: animateSpan 0.5s ease 0.5s infinite alternate;
+		}
+
 	</style>
 </head>
 <body style="width:500px;min-height:100px;">
-	<h2>58COIN加速器</h2>
-	<p class="fbs">当前网速：<span id="fbs">检测中...</span></p>
-	<button id="invoke_background_js">58COIN加速</button>
-	<p>点击加速站点或右键加速站点</p>
-	<div class="container">
-		<a data-type="www">58COIN官网</a>
-		<a data-type="usdt">USDT合约</a>
-		<a data-type="swap">币本位合约</a>
-		<a data-type="spot">币币交易</a>
-		<a data-type="regular">季度合约</a>
-		<a data-type="c2c">法币交易</a>
+	<div id="loading" class='g-page-loading'>
+		<div class='loading-txt'>
+			<span>5</span>
+			<span>8</span>
+			<span>C</span>
+			<span>O</span>
+			<span>I</span>
+			<span>N</span>
+		</div>
+		<div className='loading-line'></div>
+	</div>
+	<div class="bodys">
+		<h2>58COIN加速器</h2>
+		<p class="fbs">当前网速：<span id="fbs">检测中...</span></p>
+		<div class="switch-body">
+			<span class="switch-title">站点加速：</span>
+			<label class="switch">
+				<input id="checkbox" type="checkbox">
+				<div id="switch" class="slider round"></div>
+			</label>
+		</div>
+		<p>点击加速站点或右键加速站点</p>
+		<div class="container">
+			<a data-type="www">58COIN官网</a>
+			<a data-type="usdt">USDT合约</a>
+			<a data-type="swap">币本位合约</a>
+			<a data-type="spot">币币交易</a>
+			<a data-type="regular">季度合约</a>
+			<a data-type="c2c">法币交易</a>
+		</div>
 	</div>
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/popup.js"></script>

@@ -17,20 +17,35 @@ function CHANGE_IP() {
     PROXY_IP()
 }
 
-function PROXY_IP() {
-	let ips = ['23.102.75.168:8080']
-	let ip = ips[ip_index]
+function CLEAR_PROXY () {
+	chrome.proxy.settings.clear({}, function () {
+		chrome.notifications.create(null, {
+			type: 'basic',
+			iconUrl: 'icon.png',
+			title: '58COIN加速器',
+			message: `站点加速关闭啦~~`
+		});
+	})
+}
+
+function SET_CONFIG () {
+	let ips = ['23.102.75.168:443']
+	let ip = ips[ip_index - 1]
 	let config = {
 		mode: "pac_script",
 		pacScript: {
 			data: `function FindProxyForURL(url, host) {\n` +
 						`if (url.indexOf('58ex.com') > -1) {\n` + 
-							`return 'PROXY ${ip}; SOCKS ${ip}; https ${ip}; DIRECT;'; \n` +
+							`return 'PROXY ${ip}; SOCKS ${ip}; HTTPS ${ip}; DIRECT;'; \n` +
 						`}` + 	
 						`return 'DIRECT'; \n` +
 					`}`
 		}
 	};
+	return {config, ips}
+}
+function PROXY_IP() {
+	let {config, ips} = SET_CONFIG()
 	chrome.proxy.settings.set(
 		{value: config},
 		function() {
